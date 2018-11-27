@@ -84,7 +84,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             loginUser(editTextLiId.getText().toString(), editTextLiPw.getText().toString());
         }
         if (v == buttonLiRg) {
-            registerUser(editTextLiId.getText().toString(), editTextLiId.getText().toString());
+            registerUser(editTextLiId.getText().toString(), editTextLiPw.getText().toString());
         }
     }
 
