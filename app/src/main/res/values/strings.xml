@@ -8,4 +8,6 @@
     <string name="borrowed_by">Borrowed By</string>
     <string name="author">Author</string>
     <string name="title">Title</string>
+    <string name="enter_name_of_friend">Enter Name of Friend</string>
+    <string name="enter_friend_name">Enter Friend Name</string>
 </resources>
