@@ -10,4 +10,5 @@
     <string name="title">Title</string>
     <string name="enter_name_of_friend">Enter Name of Friend</string>
     <string name="enter_friend_name">Enter Friend Name</string>
+    <string name="enter_friend_s_name">Enter Friend\'s Name</string>
 </resources>

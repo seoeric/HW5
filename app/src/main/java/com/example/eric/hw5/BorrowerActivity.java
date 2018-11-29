@@ -88,6 +88,7 @@ public class BorrowerActivity extends Activity implements View.OnClickListener {
                             editTextBrAuthor.setText(tempBookBr.Author);
                             editTextBrCondition.setText(tempBookBr.Condition);
                             isFound = true;
+                            Toast.makeText(BorrowerActivity.this, "Book Found!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -99,6 +100,7 @@ public class BorrowerActivity extends Activity implements View.OnClickListener {
 
                 @Override
                 public void onCancelled(DatabaseError error) {
+                    Toast.makeText(BorrowerActivity.this, "Error", Toast.LENGTH_SHORT).show();
                     // Failed to read value
                 }
             });

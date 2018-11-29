@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text"
-        android:hint="@string/enter_friend_name" />
+        android:hint="@string/enter_friend_s_name" />
 
 
 
