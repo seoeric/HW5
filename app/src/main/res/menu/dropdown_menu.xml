@@ -6,7 +6,7 @@
         android:title="Update Condition" />
     <item
         android:id="@+id/menuUpdateBorrower"
-        android:title="Update Borrower" />
+        android:title="Look Up Borrower" />
     <item
         android:id="@+id/menuDeleteBook"
         android:title="Delete Book" />

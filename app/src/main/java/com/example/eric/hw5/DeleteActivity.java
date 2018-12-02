@@ -87,9 +87,9 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
-                        if (dataSnapshot.child(mAuth.getUid()).child(editTextDlTitle.getText().toString().toUpperCase()).exists()) {
+                        if (dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).exists()) {
                             Toast.makeText(DeleteActivity.this, "Book Found, updating values", Toast.LENGTH_SHORT).show();
-                            Book tempBook = dataSnapshot.child(mAuth.getUid()).child(editTextDlTitle.getText().toString().toUpperCase()).getValue(Book.class);
+                            Book tempBook = dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).getValue(Book.class);
                             editTextDlAuthor.setText(tempBook.Author);
                             editTextDlBorrowedBy.setText(tempBook.BorrowedBy);
                             editTextDlCondition.setText(tempBook.Condition);
@@ -114,9 +114,9 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    if (dataSnapshot.child(mAuth.getUid()).child(editTextDlTitle.getText().toString().toUpperCase()).exists()) {
+                    if (dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).exists() & dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).getValue(Book.class).Owner == mAuth.getUid()) {
                         Toast.makeText(DeleteActivity.this, "Book Found, deleting book from database", Toast.LENGTH_SHORT).show();
-                        dataSnapshot.child(mAuth.getUid()).child(editTextDlTitle.getText().toString().toUpperCase()).getRef().removeValue();
+                        dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).getRef().removeValue();
                     }
                 }
 

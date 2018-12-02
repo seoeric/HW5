@@ -87,9 +87,9 @@ public class HomeActivity extends Activity implements View.OnClickListener {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
-                        if (dataSnapshot.child(mAuth.getUid()).child(editTextHmTitle.getText().toString().toUpperCase()).exists()) {
+                        if (dataSnapshot.child(editTextHmTitle.getText().toString().toUpperCase()).exists() & dataSnapshot.child(editTextHmTitle.getText().toString().toUpperCase()).getValue(Book.class).Owner == mAuth.getUid()) {
                             Toast.makeText(HomeActivity.this, "Book Found, updating values", Toast.LENGTH_SHORT).show();
-                            Book tempBook = dataSnapshot.child(mAuth.getUid()).child(editTextHmTitle.getText().toString().toUpperCase()).getValue(Book.class);
+                            Book tempBook = dataSnapshot.child(editTextHmTitle.getText().toString().toUpperCase()).getValue(Book.class);
                             editTextHmAuthor.setText(tempBook.Author);
                             editTextHmBorrowedBy.setText(tempBook.BorrowedBy);
                             editTextHmCondition.setText(tempBook.Condition);
@@ -109,10 +109,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             }
         }
         else if (v == buttonHmAdd) {
-            Book newBook = new Book(editTextHmTitle.getText().toString().toUpperCase(), editTextHmAuthor.getText().toString().toUpperCase(), editTextHmCondition.getText().toString().toUpperCase(), editTextHmBorrowedBy.getText().toString().toUpperCase());
-
-            String key = mAuth.getUid();
-            myRef.child(key).child(editTextHmTitle.getText().toString().toUpperCase()).setValue(newBook);
+            Book newBook = new Book(editTextHmTitle.getText().toString().toUpperCase(), editTextHmAuthor.getText().toString().toUpperCase(), editTextHmCondition.getText().toString().toUpperCase(), editTextHmBorrowedBy.getText().toString().toUpperCase(), mAuth.getUid());
+            myRef.child(editTextHmTitle.getText().toString().toUpperCase()).setValue(newBook);
 
             Toast.makeText(HomeActivity.this, "Book Added.", Toast.LENGTH_SHORT).show();
 
