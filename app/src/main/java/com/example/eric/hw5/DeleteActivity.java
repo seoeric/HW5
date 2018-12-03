@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class DeleteActivity extends Activity implements View.OnClickListener {
     private EditText editTextDlTitle, editTextDlAuthor, editTextDlBorrowedBy;
-    private Button buttonDlCheck, buttonDlDelete;
+    private Button buttonDlDelete;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
@@ -40,8 +40,8 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
         editTextDlAuthor = findViewById(R.id.editTextDlAuthor);
         editTextDlBorrowedBy = findViewById(R.id.editTextDlBorrowedBy);
 
-        buttonDlCheck.setOnClickListener(this);
-        buttonDlCheck.setOnClickListener(this);
+        buttonDlDelete = findViewById(R.id.buttonDlDelete);
+        buttonDlDelete.setOnClickListener(this);
     }
 
 
@@ -82,13 +82,13 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    if (dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).exists()) {
-                        Book tempBook = dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).getValue(Book.class);
+                    if (dataSnapshot.child(mAuth.getUid()).child(editTextDlTitle.getText().toString().toUpperCase()).exists()) {
+                        Book tempBook = dataSnapshot.child(mAuth.getUid()).child(editTextDlTitle.getText().toString().toUpperCase()).getValue(Book.class);
                         if (tempBook.Owner == mAuth.getUid()) {
                             if (tempBook.Author == editTextDlAuthor.getText().toString().toUpperCase() & tempBook.BorrowedBy == editTextDlBorrowedBy.getText().toString().toUpperCase()) {
 
                                 Toast.makeText(DeleteActivity.this, "Book Found, deleting book from database", Toast.LENGTH_SHORT).show();
-                                dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).getRef().removeValue();
+                                dataSnapshot.child(mAuth.getUid()).child(editTextDlTitle.getText().toString().toUpperCase()).getRef().removeValue();
                             }
                         }
                     }

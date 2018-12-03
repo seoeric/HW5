@@ -84,7 +84,7 @@ public class CheckActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == buttonChCheck) {
-            DatabaseReference bookChkRef = database.getReference("Books").child(editTextChTitle.getText().toString().toUpperCase());
+            DatabaseReference bookChkRef = database.getReference("Books").child(mAuth.getUid()).child(editTextChTitle.getText().toString().toUpperCase());
             bookChkRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

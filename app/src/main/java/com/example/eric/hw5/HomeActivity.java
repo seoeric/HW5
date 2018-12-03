@@ -83,7 +83,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
         if (v == buttonHmAdd) {
             Book newBook = new Book(editTextHmTitle.getText().toString().toUpperCase(), editTextHmAuthor.getText().toString().toUpperCase(), editTextHmCondition.getText().toString().toUpperCase(), editTextHmBorrowedBy.getText().toString().toUpperCase(), mAuth.getUid());
-            myRef.child(editTextHmTitle.getText().toString().toUpperCase()).setValue(newBook);
+            myRef.child(mAuth.getUid()).child(editTextHmTitle.getText().toString().toUpperCase()).setValue(newBook);
 
             Toast.makeText(HomeActivity.this, "Book Added.", Toast.LENGTH_SHORT).show();
 

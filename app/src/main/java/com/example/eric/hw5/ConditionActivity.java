@@ -91,7 +91,7 @@ public class ConditionActivity extends Activity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         if (v == buttonCnCheck) {
-            DatabaseReference bookChkRef = database.getReference("Books").child(editTextCnTitle.getText().toString().toUpperCase());
+            DatabaseReference bookChkRef = database.getReference("Books").child(mAuth.getUid()).child(editTextCnTitle.getText().toString().toUpperCase());
             bookChkRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -112,7 +112,7 @@ public class ConditionActivity extends Activity implements View.OnClickListener 
         }
 
         else if (v == buttonCnUpdate) {
-            DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Books").child(editTextCnTitle.getText().toString().toUpperCase());
+            DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Books").child(mAuth.getUid()).child(editTextCnTitle.getText().toString().toUpperCase());
             Map<String, Object> updates = new HashMap<String,Object>();
 
             updates.put("Condition", editTextCnCondition.getText().toString().toUpperCase());

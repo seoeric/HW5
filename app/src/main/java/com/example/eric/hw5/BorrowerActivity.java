@@ -78,8 +78,8 @@ public class BorrowerActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         isFound = false;
         if (v == buttonBrLookUp) {
-
-            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Books").child(mAuth.getUid());
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
