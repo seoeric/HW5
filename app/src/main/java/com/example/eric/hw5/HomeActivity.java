@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class HomeActivity extends Activity implements View.OnClickListener {
     private EditText editTextHmTitle, editTextHmAuthor, editTextHmCondition, editTextHmBorrowedBy;
-    private Button buttonHmCheck, buttonHmAdd;
+    private Button buttonHmAdd;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
@@ -40,10 +40,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         editTextHmAuthor = findViewById(R.id.editTextHmAuthor);
         editTextHmCondition = findViewById(R.id.editTextHmCondition);
         editTextHmBorrowedBy = findViewById(R.id.editTextHmBorrowedBy);
-        buttonHmCheck = findViewById(R.id.buttonHmCheck);
         buttonHmAdd = findViewById(R.id.buttonHmAdd);
 
-        buttonHmCheck.setOnClickListener(this);
         buttonHmAdd.setOnClickListener(this);
     }
 
@@ -59,7 +57,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuUpdateCondition:
-                startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+                startActivity(new Intent(HomeActivity.this, ConditionActivity.class));
                 return true;
             case R.id.menuUpdateBorrower:
                 startActivity(new Intent(HomeActivity.this, BorrowerActivity.class));
@@ -70,8 +68,11 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             case R.id.menuSignOut:
                 startActivity(new Intent(HomeActivity.this, MainActivity.class));
                 return true;
+            case R.id.menuCheckBook:
+                startActivity(new Intent(HomeActivity.this, CheckActivity.class));
+            case R.id.menuAddBook:
+                startActivity(new Intent(HomeActivity.this, CheckActivity.class));
             default:
-
                 return false;
 
         }
@@ -79,36 +80,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v == buttonHmCheck) {
-            if (editTextHmTitle.getText().toString() != "") {
 
-                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        if (dataSnapshot.child(editTextHmTitle.getText().toString().toUpperCase()).exists() & dataSnapshot.child(editTextHmTitle.getText().toString().toUpperCase()).getValue(Book.class).Owner == mAuth.getUid()) {
-                            Toast.makeText(HomeActivity.this, "Book Found, updating values", Toast.LENGTH_SHORT).show();
-                            Book tempBook = dataSnapshot.child(editTextHmTitle.getText().toString().toUpperCase()).getValue(Book.class);
-                            editTextHmAuthor.setText(tempBook.Author);
-                            editTextHmBorrowedBy.setText(tempBook.BorrowedBy);
-                            editTextHmCondition.setText(tempBook.Condition);
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                    }
-                });
-
-            }
-            else {
-                Toast.makeText(HomeActivity.this, "Please Enter Book Title to Check", Toast.LENGTH_SHORT).show();
-            }
-        }
-        else if (v == buttonHmAdd) {
+        if (v == buttonHmAdd) {
             Book newBook = new Book(editTextHmTitle.getText().toString().toUpperCase(), editTextHmAuthor.getText().toString().toUpperCase(), editTextHmCondition.getText().toString().toUpperCase(), editTextHmBorrowedBy.getText().toString().toUpperCase(), mAuth.getUid());
             myRef.child(editTextHmTitle.getText().toString().toUpperCase()).setValue(newBook);
 

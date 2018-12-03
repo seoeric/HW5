@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".HomeActivity" />
         <activity android:name=".BorrowerActivity" />
-        <activity android:name=".DeleteActivity"></activity>
+        <activity android:name=".DeleteActivity" />
+        <activity android:name=".CheckActivity" />
+        <activity android:name=".ConditionActivity"></activity>
     </application>
 
 </manifest>

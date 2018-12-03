@@ -1,57 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".ConditionActivity">
 
     <EditText
-        android:id="@+id/editTextHmTitle"
+        android:id="@+id/editTextCnTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="90dp"
         android:ems="10"
         android:inputType="text"
         android:hint="@string/title"/>
 
-    <EditText
-        android:id="@+id/editTextHmAuthor"
+    <TextView
+        android:id="@+id/textViewCnAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="200dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="@string/author" />
 
     <EditText
-        android:id="@+id/editTextHmCondition"
+        android:id="@+id/editTextCnCondition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="260dp"
         android:ems="10"
         android:layout_centerHorizontal="true"
-        android:inputType="text"
         android:hint="@string/condition" />
 
     <EditText
-        android:id="@+id/editTextHmBorrowedBy"
+        android:id="@+id/editTextCnBorrowedBy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="230dp"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:inputType="text"
         android:hint="@string/borrowed_by" />
 
-
     <Button
-        android:id="@+id/buttonHmAdd"
+        android:id="@+id/buttonCnCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop = "340dp"
-        android:text="Add Book" />
+        android:layout_marginTop="140dp"
+        android:text="Check Database" />
+
+    <Button
+        android:id="@+id/buttonCnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:text="Update Condition/ Borrower" />
+
+
 </RelativeLayout>
