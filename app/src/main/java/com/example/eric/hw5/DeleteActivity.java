@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class DeleteActivity extends Activity implements View.OnClickListener {
-    private EditText editTextDlTitle, editTextDlAuthor, editTextDlCondition, editTextDlBorrowedBy;
+    private EditText editTextDlTitle, editTextDlAuthor, editTextDlBorrowedBy;
     private Button buttonDlCheck, buttonDlDelete;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
@@ -38,13 +38,10 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
 
         editTextDlTitle = findViewById(R.id.editTextDlTitle);
         editTextDlAuthor = findViewById(R.id.editTextDlAuthor);
-        editTextDlCondition = findViewById(R.id.editTextDlCondition);
         editTextDlBorrowedBy = findViewById(R.id.editTextDlBorrowedBy);
-        buttonDlCheck = findViewById(R.id.buttonDlCheck);
-        buttonDlDelete = findViewById(R.id.buttonDlDelete);
 
         buttonDlCheck.setOnClickListener(this);
-        buttonDlDelete.setOnClickListener(this);
+        buttonDlCheck.setOnClickListener(this);
     }
 
 
@@ -79,44 +76,21 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v == buttonDlCheck) {
-            if (editTextDlTitle.getText().toString() != "") {
-
-                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        if (dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).exists()) {
-                            Toast.makeText(DeleteActivity.this, "Book Found, updating values", Toast.LENGTH_SHORT).show();
-                            Book tempBook = dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).getValue(Book.class);
-                            editTextDlAuthor.setText(tempBook.Author);
-                            editTextDlBorrowedBy.setText(tempBook.BorrowedBy);
-                            editTextDlCondition.setText(tempBook.Condition);
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                    }
-                });
-
-            }
-            else {
-                Toast.makeText(DeleteActivity.this, "Please Enter Book Title to Check", Toast.LENGTH_SHORT).show();
-            }
-        }
-        else if (v == buttonDlDelete) {
+        if (v == buttonDlDelete) {
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    if (dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).exists() & dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).getValue(Book.class).Owner == mAuth.getUid()) {
-                        Toast.makeText(DeleteActivity.this, "Book Found, deleting book from database", Toast.LENGTH_SHORT).show();
-                        dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).getRef().removeValue();
+                    if (dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).exists()) {
+                        Book tempBook = dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).getValue(Book.class);
+                        if (tempBook.Owner == mAuth.getUid()) {
+                            if (tempBook.Author == editTextDlAuthor.getText().toString().toUpperCase() & tempBook.BorrowedBy == editTextDlBorrowedBy.getText().toString().toUpperCase()) {
+
+                                Toast.makeText(DeleteActivity.this, "Book Found, deleting book from database", Toast.LENGTH_SHORT).show();
+                                dataSnapshot.child(editTextDlTitle.getText().toString().toUpperCase()).getRef().removeValue();
+                            }
+                        }
                     }
                 }
 
