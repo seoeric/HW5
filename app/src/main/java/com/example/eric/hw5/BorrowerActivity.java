@@ -84,7 +84,7 @@ public class BorrowerActivity extends Activity implements View.OnClickListener {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Book tempBookBr = snapshot.getValue(Book.class);
-                        if (tempBookBr.BorrowedBy == editTextBrBorrowedBy.getText().toString().toUpperCase()) {
+                        if (tempBookBr.BorrowedBy.equals(editTextBrBorrowedBy.getText().toString().toUpperCase())) {
                             System.out.println("match found");
                             editTextBrTitle.setText(tempBookBr.Title);
                             editTextBrAuthor.setText(tempBookBr.Author);
@@ -96,11 +96,9 @@ public class BorrowerActivity extends Activity implements View.OnClickListener {
                             System.out.println("no match");
                         }
                     }
-
                     if (isFound = false) {
                         Toast.makeText(BorrowerActivity.this, "Book not found", Toast.LENGTH_SHORT).show();
                     }
-
                 }
 
                 @Override

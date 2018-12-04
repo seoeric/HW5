@@ -84,8 +84,8 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
                     // whenever data at this location is updated.
                     if (dataSnapshot.child(mAuth.getUid()).child(editTextDlTitle.getText().toString().toUpperCase()).exists()) {
                         Book tempBook = dataSnapshot.child(mAuth.getUid()).child(editTextDlTitle.getText().toString().toUpperCase()).getValue(Book.class);
-                        if (tempBook.Owner == mAuth.getUid()) {
-                            if (tempBook.Author == editTextDlAuthor.getText().toString().toUpperCase() & tempBook.BorrowedBy == editTextDlBorrowedBy.getText().toString().toUpperCase()) {
+                        if (tempBook.Owner.equals(mAuth.getUid())) {
+                            if (tempBook.Author.equals(editTextDlAuthor.getText().toString().toUpperCase()) & tempBook.BorrowedBy.equals(editTextDlBorrowedBy.getText().toString().toUpperCase())) {
 
                                 Toast.makeText(DeleteActivity.this, "Book Found, deleting book from database", Toast.LENGTH_SHORT).show();
                                 dataSnapshot.child(mAuth.getUid()).child(editTextDlTitle.getText().toString().toUpperCase()).getRef().removeValue();
