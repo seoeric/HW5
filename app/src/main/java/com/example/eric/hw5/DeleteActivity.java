@@ -44,6 +44,11 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
         buttonDlDelete.setOnClickListener(this);
     }
 
+    /*
+        I was able to ensure that Users cannot delete books that do not belong to them by structuring the data so that only the user who input them can access them in the first place.
+        By structuring the data under mAuth.getUid(), each user's unique ID is used to access the books that exist for each user. This ensures that you have private information
+        for the books you own. Each data reference uses getUid() which is hidden from the user and ensures that they cannot manipulate data that does not belong to them.
+     */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
