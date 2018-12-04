@@ -69,8 +69,10 @@ public class BorrowerActivity extends Activity implements View.OnClickListener {
                 return true;
             case R.id.menuCheckBook:
                 startActivity(new Intent(BorrowerActivity.this, CheckActivity.class));
+                return true;
             case R.id.menuAddBook:
                 startActivity(new Intent(BorrowerActivity.this, HomeActivity.class));
+                return true;
             default:
                 return false;
 

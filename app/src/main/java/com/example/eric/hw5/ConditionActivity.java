@@ -80,8 +80,10 @@ public class ConditionActivity extends Activity implements View.OnClickListener 
                 return true;
             case R.id.menuCheckBook:
                 startActivity(new Intent(ConditionActivity.this, CheckActivity.class));
+                return  true;
             case R.id.menuAddBook:
                 startActivity(new Intent(ConditionActivity.this, CheckActivity.class));
+                return  true;
             default:
                 return false;
 

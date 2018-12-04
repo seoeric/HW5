@@ -73,8 +73,10 @@ public class CheckActivity extends Activity implements View.OnClickListener {
                 return true;
             case R.id.menuCheckBook:
                 startActivity(new Intent(CheckActivity.this, CheckActivity.class));
+                return true;
             case R.id.menuAddBook:
-                startActivity(new Intent(CheckActivity.this, CheckActivity.class));
+                startActivity(new Intent(CheckActivity.this, HomeActivity.class));
+                return true;
             default:
                 return false;
 

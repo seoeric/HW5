@@ -9,7 +9,7 @@
         android:title="Check Book" />
     <item
         android:id="@+id/menuUpdateCondition"
-        android:title="Update Status" />
+        android:title="Update Condition" />
     <item
         android:id="@+id/menuUpdateBorrower"
         android:title="Look Up Borrower" />

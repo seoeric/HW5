@@ -29,7 +29,7 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_delete);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -69,8 +69,10 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
                 return true;
             case R.id.menuCheckBook:
                 startActivity(new Intent(DeleteActivity.this, CheckActivity.class));
+                return true;
             case R.id.menuAddBook:
                 startActivity(new Intent(DeleteActivity.this, HomeActivity.class));
+                return true;
             default:
                 return false;
 
