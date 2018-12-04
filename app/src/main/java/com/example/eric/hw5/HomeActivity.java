@@ -71,7 +71,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             case R.id.menuCheckBook:
                 startActivity(new Intent(HomeActivity.this, CheckActivity.class));
             case R.id.menuAddBook:
-                startActivity(new Intent(HomeActivity.this, CheckActivity.class));
+                startActivity(new Intent(HomeActivity.this, HomeActivity.class));
             default:
                 return false;
 

@@ -50,35 +50,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater optionsMenuInflater = getMenuInflater();
-        optionsMenuInflater.inflate(R.menu.dropdown_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menuUpdateCondition:
-                startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                return true;
-            case R.id.menuUpdateBorrower:
-                startActivity(new Intent(MainActivity.this, BorrowerActivity.class));
-                return true;
-            case R.id.menuDeleteBook:
-                startActivity(new Intent(MainActivity.this, DeleteActivity.class));
-                return true;
-            case R.id.menuSignOut:
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
-                return true;
-            default:
-
-                return false;
-
-        }
-    }
-
-    @Override
     public void onClick(View v) {
         if (v == buttonLiSi) {
             loginUser(editTextLiId.getText().toString(), editTextLiPw.getText().toString());

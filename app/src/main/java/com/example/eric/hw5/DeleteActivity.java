@@ -56,7 +56,7 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuUpdateCondition:
-                startActivity(new Intent(DeleteActivity.this, HomeActivity.class));
+                startActivity(new Intent(DeleteActivity.this, ConditionActivity.class));
                 return true;
             case R.id.menuUpdateBorrower:
                 startActivity(new Intent(DeleteActivity.this, BorrowerActivity.class));
@@ -67,8 +67,11 @@ public class DeleteActivity extends Activity implements View.OnClickListener {
             case R.id.menuSignOut:
                 startActivity(new Intent(DeleteActivity.this, MainActivity.class));
                 return true;
+            case R.id.menuCheckBook:
+                startActivity(new Intent(DeleteActivity.this, CheckActivity.class));
+            case R.id.menuAddBook:
+                startActivity(new Intent(DeleteActivity.this, HomeActivity.class));
             default:
-
                 return false;
 
         }
