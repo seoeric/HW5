@@ -83,22 +83,24 @@ public class BorrowerActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         isFound = false;
         if (v == buttonBrLookUp) {
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Books").child(mAuth.getUid());
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Books");
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Book tempBookBr = snapshot.getValue(Book.class);
-                        if (tempBookBr.BorrowedBy.equals(editTextBrBorrowedBy.getText().toString().toUpperCase())) {
-                            System.out.println("match found");
-                            editTextBrTitle.setText(tempBookBr.Title);
-                            editTextBrAuthor.setText(tempBookBr.Author);
-                            editTextBrCondition.setText(tempBookBr.Condition);
-                            isFound = true;
-                            Toast.makeText(BorrowerActivity.this, "Book Found!", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            System.out.println("no match");
+                        for (DataSnapshot snapshot2 : snapshot.getChildren()) {
+
+                            Book tempBookBr = snapshot2.getValue(Book.class);
+                            if (tempBookBr.BorrowedBy.equals(editTextBrBorrowedBy.getText().toString().toUpperCase())) {
+                                System.out.println("match found");
+                                editTextBrTitle.setText(tempBookBr.Title);
+                                editTextBrAuthor.setText(tempBookBr.Author);
+                                editTextBrCondition.setText(tempBookBr.Condition);
+                                isFound = true;
+                                Toast.makeText(BorrowerActivity.this, "Book Found!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                System.out.println("no match");
+                            }
                         }
                     }
                     if (isFound = false) {
